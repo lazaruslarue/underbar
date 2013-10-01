@@ -28,6 +28,24 @@ var _ = { };
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+    var output = [];
+    if (n > array.length) { 
+        for (var i = array.length; i>0; i--) {
+        output.push(array.pop());
+      }
+      output.reverse();
+      return output;
+    }
+    else if (n || n===0){
+      for (var i = 0; i<n; i++) {
+        output.push(array.pop());
+      }
+      output.reverse();
+      return output;
+    } else {
+      array.reverse();
+      return array[0];
+    }
   };
 
   // Call iterator(value, key, collection) for each element of collection.
