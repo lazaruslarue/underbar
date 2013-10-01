@@ -17,18 +17,14 @@ var _ = { };
   // return just the first element.
   _.first = function(array, n) {
     var output = [];
-    if (n > 1) {
-      for (var i=0;i<n;i++){
-        output[i] = array[i];
-      }
-    } else if (n = 1) {
-      output[0] = array[0];
+    if (n=0){
+      return output;
+    } else if (n = 0){ 
+      return array[0];
     } else {
-      return 0;
+      return array.slice(0,n);
     }
-    for (var j=0;j<output.length;j++){
-      return output[j];
-    }
+    
   };
 
   // Like first, but for the last elements. If n is undefined, return just the
