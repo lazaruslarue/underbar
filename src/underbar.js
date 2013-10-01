@@ -52,16 +52,16 @@ var _ = { };
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
     if (iterator === undefined){
-      return undefined
+      return undefined;
     }
     
     if (Array.isArray(collection)) { // do this if it's an array
-      for (var ii = 0; ii<collection.length; ii++) {
-        iterator( collection[ii], ii, collection)
+      for (var i = 0; i<collection.length; i++) {
+        iterator( collection[i], i, collection);
       }
     } else  { // do this if it's an object
       for (var key in collection) {
-        iterator(collection[key],key,collection)
+        iterator(collection[key],key,collection);
       }
     }
     
@@ -84,13 +84,26 @@ var _ = { };
   }
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, iterator) {
-
+    var output = [];
+    _.each(collection, function(item, index){
+      if ( iterator(item) ){
+        output.push(item);
+      }    
+    })
+    return output;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, iterator) {
     // TIP: see if you can re-use _.select() here, without simply
     // copying code in and modifying it
+    var output = collection;
+    _.each(collection, function(item, index){
+      if ( iterator(item) ){
+        output.splice(index,1)
+      }
+    })
+    return output;
   };
 
   // Produce a duplicate-free version of the array.
