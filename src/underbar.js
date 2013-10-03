@@ -95,15 +95,15 @@ var _ = { };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, iterator) {
-    // TIP: see if you can re-use _.select() here, without simply
+    // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    var output = collection;
-    _.each(collection, function(item, index){
-      if ( iterator(item) ){
-        output.splice(index,1)
-      }
-    })
-    return output;
+    var output = [];
+      _.filter(collection, function(item){
+        if (!iterator(item)){
+          output.push(item);
+        }
+      })
+      return output;
   };
 
   // Produce a duplicate-free version of the array.
