@@ -108,6 +108,16 @@ var _ = { };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var output = [];
+    array.sort();
+    console.log(array + ' start ' + output)
+    _.each(array, function(number, i){
+      if (number == array[1+i]){
+      } else { 
+        output.push(array[i]);
+      }
+    })
+    return output;
   };
 
 
