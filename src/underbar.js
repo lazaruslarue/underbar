@@ -127,7 +127,7 @@ var _ = { };
     // the members, it also maintains an array of results.
     var output = [];
     for (var i = 0; i<array.length; i++){
-      output.push(iterator(array[i]));
+      output.push(iterator(array[i], i, array));
 
     }
     return output;
@@ -177,21 +177,20 @@ var _ = { };
   //     return total + number;
   //   }, 0); // should be 6
   //
-  _.reduce = function(collection, iterator, initialValue) {
-
-    if (!initialValue) initialValue = 0; 
-  
-    if (collection.length === 1){ // base condition
-  
-      initialValue = iterator(initialValue, collection.pop())
-      return initialValue;
-        
-    } else { // recursive case
-    
-      return _.reduce(collection, iterator, iterator(collection.pop(), initialValue));
-    }
-
-  };
+_.reduce = function(collection, iterator, initialValue) {
+    var initial;
+    if (arguments.length < 3) initial = false;
+    _.each(collection, function(value, index, collection){
+      //if !initial then value is now intitialValue && set initial to true        
+      if (!initial) { //
+        initialValue = value;
+        initial = true;
+      } else {
+        initialValue = iterator(initialValue, value);
+      }
+    })
+  return initialValue;
+};
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
