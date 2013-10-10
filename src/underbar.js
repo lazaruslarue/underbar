@@ -177,20 +177,23 @@ var _ = { };
   //     return total + number;
   //   }, 0); // should be 6
   //
-_.reduce = function(collection, iterator, initialValue) {
-    var initial;
-    if (arguments.length < 3) initial = false;
+  _.reduce = function(collection, iterator, initialValue) {
+    var initial = arguments.length === 2;
+ 
     _.each(collection, function(value, index, collection){
-      //if !initial then value is now intitialValue && set initial to true        
-      if (!initial) { //
-        initialValue = value;
-        initial = true;
-      } else {
-        initialValue = iterator(initialValue, value);
-      }
-    })
-  return initialValue;
-};
+        //if !initial then value is now intitialValue && set initial to true        
+        if (initial) { //
+          initialValue = value;
+          initial = false;
+        } else {
+          initialValue = iterator(initialValue, value);
+        }
+      
+    });
+    return initialValue;
+  }
+
+
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
