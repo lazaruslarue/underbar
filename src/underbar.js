@@ -179,9 +179,8 @@ var _ = { };
   //
   _.reduce = function(collection, iterator, initialValue) {
 
-    if (initialValue === undefined ){
-      initialValue = null;
-    }
+    if (!initialValue) initialValue = 0; 
+  
     if (collection.length === 1){ // base condition
   
       initialValue = iterator(initialValue, collection.pop())
