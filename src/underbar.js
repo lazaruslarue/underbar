@@ -181,19 +181,16 @@ var _ = { };
     var initial = arguments.length === 2;
  
     _.each(collection, function(value, index, collection){
-        //if !initial then value is now intitialValue && set initial to true        
+        //if !initial then value is now initialValue && set initial to true        
         if (initial) { //
           initialValue = value;
           initial = false;
         } else {
           initialValue = iterator(initialValue, value);
         }
-      
     });
     return initialValue;
   }
-
-
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
@@ -210,7 +207,14 @@ var _ = { };
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
-    // TIP: Try re-using reduce() here.
+    var funnyfunction = function(val,i,list){
+    if ( iterator(val) ) {
+        return ;
+      } else {
+        return false;
+      }
+    }
+    return _.reduce(collection,funnyfunction,true)
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
