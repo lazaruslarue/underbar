@@ -181,7 +181,6 @@ var _ = { };
     var initial = arguments.length === 2;
  
     _.each(collection, function(value, index, collection){
-        //if !initial then value is now initialValue && set initial to true        
         if (initial) { //
           initialValue = value;
           initial = false;
@@ -207,14 +206,16 @@ var _ = { };
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
-    var funnyfunction = function(val,i,list){
-    if ( iterator(val) ) {
-        return true;
+    //handle empty collection
+    if ( collection == false ) return true;
+    // start reducing with inital = false
+    return _.reduce(collection,function(lastValue, newValue){ 
+      if ( lastValue ) {
+        return iterator(newValue);
       } else {
-        return false;
+        return false ;
       }
-    }
-    return _.reduce(collection,funnyfunction,true)
+    },true);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
