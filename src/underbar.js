@@ -209,7 +209,7 @@ var _ = { };
   _.every = function(collection, iterator) {
     var funnyfunction = function(val,i,list){
     if ( iterator(val) ) {
-        return ;
+        return true;
       } else {
         return false;
       }
