@@ -207,7 +207,6 @@ var _ = { };
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     //handle empty collection
-    if ( collection == false ) return true;
     // start reducing with inital = false
     return _.reduce(collection,function(lastValue, newValue){ 
       if ( lastValue ) {
