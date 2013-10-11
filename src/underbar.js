@@ -206,15 +206,14 @@ var _ = { };
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
-    //handle empty collection
-    // start reducing with inital = false
+    iterator || ( iterator = function(i){return i;});
     return _.reduce(collection,function(lastValue, newValue){ 
       if ( lastValue ) {
-        return iterator(newValue);
+        return iterator(newValue) == lastValue;
       } else {
         return false ;
       }
-    },true);
+    },true);    
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
