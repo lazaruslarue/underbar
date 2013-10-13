@@ -228,15 +228,15 @@ var _ = { };
     var result = false;
     iterator || ( iterator = function(i){return i;});
 
-    return _.reduce(collection, function(lastValue,newValue){
-      if (result == true){
-        return result;
+    _.reduce(collection, function(lastValue,newValue){
+      if (result == true ||  typeof newValue == "string"){
+        return result = true;
       } else {
-        return iterator(newValue);
+        return result = iterator(newValue);
       }
     }, false)
 
-
+    return result
 
     // if (collection == null) return result; 
     // _.each(collection,function(val,i,list){
