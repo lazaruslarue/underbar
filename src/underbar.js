@@ -220,6 +220,32 @@ var _ = { };
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    // provide an iterator
+    // if ( iterator == undefined ) { 
+    //   iterator = function(i){return i;};
+    // }
+    // 
+    var result = false;
+    iterator || ( iterator = function(i){return i;});
+
+    return _.reduce(collection, function(lastValue,newValue){
+      if (result == true){
+        return result;
+      } else {
+        return iterator(newValue);
+      }
+    }, false)
+
+
+
+    // if (collection == null) return result; 
+    // _.each(collection,function(val,i,list){
+    //   if (result || (result = iterator.call(val, i, list))) return {};
+    // })
+    // return !!result;
+
+
+    
   };
 
 
