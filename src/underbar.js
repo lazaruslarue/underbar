@@ -219,14 +219,10 @@ var _ = { };
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
-    // TIP: There's a very clever way to re-use every() here.
-    // provide an iterator
-    // if ( iterator == undefined ) { 
-    //   iterator = function(i){return i;};
-    // }
-    // 
     var result = false;
     iterator || ( iterator = function(i){return i;});
+    //seems like this is where to put the 'falsy' values check. 
+    //don't know what that would be though
 
     _.reduce(collection, function(lastValue,newValue){
       if (result == true ||  typeof newValue == "string"){
@@ -238,11 +234,6 @@ var _ = { };
 
     return !!result
 
-    // if (collection == null) return result; 
-    // _.each(collection,function(val,i,list){
-    //   if (result || (result = iterator.call(val, i, list))) return {};
-    // })
-    // return !!result;
 
 
     
