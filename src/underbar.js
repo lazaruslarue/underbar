@@ -230,13 +230,13 @@ var _ = { };
 
     _.reduce(collection, function(lastValue,newValue){
       if (result == true ||  typeof newValue == "string"){
-        return result = true;
+         result = true;
       } else {
-        return result = iterator(newValue);
+         result = iterator(newValue);
       }
     }, false)
 
-    return result
+    return !!result
 
     // if (collection == null) return result; 
     // _.each(collection,function(val,i,list){
