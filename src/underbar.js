@@ -280,12 +280,12 @@ var _ = { };
   _.defaults = function(obj) {
     for (var key in arguments){
       var addTo = arguments[key];
-      if ((typeof obj[i]) == "undefined"){ // gotta test if a key already exists
         _.each(addTo,function(val,i){
-          obj[i]= val;
+          if ((typeof obj[i]) == "undefined"){ // gotta test if a key already exists
+            obj[i]= val;
+          }      
         })
-      }
-    }
+      } 
     return obj;
   };
 
