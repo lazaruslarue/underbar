@@ -259,11 +259,34 @@ var _ = { };
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    for (var key in arguments) {
+      var addTo = arguments[key]
+      _.each(addTo,function(val,i,list){
+        obj[i] = val;
+      })
+    }
+    return obj;
   };
+
+// this is helpful test code
+// console.log("these are the arguments' keys: " + keys + ' these are the arguments: ' + arguments)
+//         console.log(arguments + ' <-- arguments '+ key + ' <-- key')
+//         console.log(obj[key] + '<-- objkey ' + key+ '<-- key' + obj + '<-- obj' + arguments + ' <-- arguments')   
+//         console.log(obj[key] + ' obj : arg ' + arguments[key] ) 
+
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for (var key in arguments){
+      var addTo = arguments[key];
+      if ((typeof obj[i]) == "undefined"){ // gotta test if a key already exists
+        _.each(addTo,function(val,i){
+          obj[i]= val;
+        })
+      }
+    }
+    return obj;
   };
 
 
