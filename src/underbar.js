@@ -363,6 +363,12 @@ var _ = { };
 
   // Shuffle an array.
   _.shuffle = function(array) {
+    var result = []
+    while (array.length > 0) {    
+      var rand = Math.floor(Math.random()*array.length);
+      result.push(array.splice(rand,1));
+    }
+    return result;
   };
 
 
